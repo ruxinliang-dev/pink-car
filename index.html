@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Pink Car is a hand-painted 2D animated short film written, designed, and animated by Ruxin Liang (2022), revisited as a 3D redesign in 2026.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="googlebot" content="noindex, nofollow, noarchive">
+<title>Pink Car - A Short Film by Ruxin Liang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #303030;
+    --paper: #ffffff;
+    --cream: #fff7fc;
+    --blush: #dea0c9;
+    --rose: #e890cb;
+    --rose-deep: #b8508f;
+    --wine: #4e3341;
+    --plum: #6b4a5a;
+    --mauve: #a16084;
+    --muted: rgba(48, 48, 48, 0.62);
+    --line: rgba(107, 74, 90, 0.16);
+    --dark-line: rgba(255, 255, 255, 0.2);
+    --shadow: 0 22px 60px rgba(107, 74, 90, 0.16);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.62;
+  }
+
+  img { display: block; width: 100%; max-width: 100%; }
+  a { color: inherit; }
+  h1, h2, h3, p, figure, blockquote { margin-top: 0; }
+
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 14px 28px;
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(12px);
+    transition: box-shadow 0.25s ease, background 0.25s ease;
+  }
+
+  .site-nav.scrolled { box-shadow: 0 6px 20px rgba(120, 50, 80, 0.12); }
+
+  .brand {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--rose-deep);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 12px;
+    font-size: 12px;
+    color: rgba(36, 26, 32, 0.72);
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .nav-links a:hover { border-color: currentColor; }
+  .nav-links a.active { color: var(--rose-deep); border-color: currentColor; }
+
+  .hero {
+    position: relative;
+    min-height: 52vh;
+    display: grid;
+    align-items: end;
+    overflow: hidden;
+    background:
+      linear-gradient(90deg, rgba(74, 51, 63, 0.76) 0%, rgba(74, 51, 63, 0.36) 52%, rgba(74, 51, 63, 0.08) 100%),
+      linear-gradient(180deg, rgba(74, 51, 63, 0.06) 0%, rgba(74, 51, 63, 0.44) 100%),
+      url("PinkCar_project_assets/images/01.gif") center / cover no-repeat;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 92px;
+    background: linear-gradient(180deg, rgba(253, 242, 241, 0), var(--paper));
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    width: min(960px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 96px 0 116px;
+    color: #fff;
+  }
+
+  .eyebrow {
+    margin: 0 0 14px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  h1 {
+    max-width: 760px;
+    margin-bottom: 16px;
+    font-family: 'Nunito', "Segoe UI", Arial, sans-serif;
+    font-size: 46px;
+    line-height: 1.04;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  .hero-copy {
+    max-width: 660px;
+    font-family: 'Nunito', "Segoe UI", Arial, sans-serif;
+    font-size: 19px;
+    line-height: 1.45;
+    text-shadow: 0 1px 22px rgba(40, 12, 24, 0.4);
+  }
+
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin: 30px 0 0; }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 7px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 12px;
+    color: #fff;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .pill:hover { background: rgba(255, 255, 255, 0.24); border-color: rgba(255, 255, 255, 0.7); }
+
+  .section { width: min(960px, calc(100% - 48px)); margin: 0 auto; padding: 86px 0; }
+  .section.compact { padding-top: 38px; }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: minmax(190px, 0.34fr) minmax(0, 0.66fr);
+    gap: 42px;
+    align-items: start;
+    margin-bottom: 34px;
+  }
+
+  .label {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--rose-deep);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  h2 {
+    margin-bottom: 18px;
+    font-family: 'Nunito', "Segoe UI", Arial, sans-serif;
+    font-size: 27px;
+    line-height: 1.22;
+    font-weight: 700;
+    color: var(--plum);
+    letter-spacing: -0.01em;
+  }
+
+  h3 { margin-bottom: 10px; font-size: 18px; line-height: 1.25; color: var(--plum); }
+
+  .lead { font-family: 'Nunito', "Segoe UI", Arial, sans-serif; font-size: 18px; line-height: 1.55; color: #3a2129; }
+  .copy p { margin-bottom: 17px; color: var(--muted); }
+
+  .info-band {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--line);
+    box-shadow: var(--shadow);
+  }
+
+  .info-item { min-height: 170px; padding: 24px; background: var(--cream); transition: background 0.25s ease; }
+  .info-item:hover { background: #fff; }
+  .info-item strong { display: block; margin-bottom: 10px; font-size: 12px; color: var(--rose-deep); text-transform: uppercase; letter-spacing: 0.03em; }
+  .info-item span { display: block; color: #37282e; }
+
+  .text-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.72fr) minmax(400px, 1.12fr);
+    gap: 44px;
+    align-items: center;
+  }
+
+  .feature-image { overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #fff; box-shadow: var(--shadow); }
+  .feature-image img { aspect-ratio: 4 / 3; object-fit: cover; transition: transform 0.55s ease; }
+  .feature-image:hover img { transform: scale(1.035); }
+  .caption { margin: 12px 0 0; font-size: 14px; font-weight: 600; color: var(--plum); }
+
+  .fact-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 28px; }
+  .fact { min-height: 150px; padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255, 250, 250, 0.85); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  .fact:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(120, 50, 80, 0.12); }
+  .fact strong { display: block; margin-bottom: 8px; font-size: 14px; color: var(--rose-deep); }
+  .fact span { display: block; font-size: 13px; color: var(--muted); }
+
+  .tint-band { background: #fbeaf4; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+  .two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+
+  .board { overflow: hidden; margin: 0; border: 1px solid var(--line); border-radius: 12px; background: #17110f; box-shadow: var(--shadow); }
+  .board img { width: 100%; height: auto; }
+
+  .stat-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 0; margin: 24px 0 0; list-style: none; }
+  .stat-list li { padding: 11px 12px; border: 1px solid rgba(224, 105, 154, 0.22); border-radius: 10px; background: rgba(255, 255, 255, 0.72); font-size: 13px; color: #3f2b34; }
+
+  .process { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 30px; }
+  .stage { padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: var(--cream); }
+  .stage-num { margin-bottom: 10px; font-size: 12px; font-weight: 700; color: var(--rose-deep); text-transform: uppercase; letter-spacing: 0.03em; }
+  .stage p { margin-bottom: 0; color: var(--muted); }
+
+  .quote-band {
+    color: var(--ink);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(circle at 18% 22%, rgba(232, 144, 203, 0.22), transparent 52%),
+      linear-gradient(135deg, #fdeef6 0%, #fbeaf4 60%, #f7dcec 100%);
+  }
+  .quote { max-width: 820px; margin: 0; font-family: 'Nunito', "Segoe UI", Arial, sans-serif; font-size: 25px; line-height: 1.4; color: var(--plum); }
+  .quote cite { display: block; margin-top: 22px; font-family: 'Nunito', Arial, Helvetica, sans-serif; font-size: 13px; font-style: normal; color: var(--muted); }
+
+  .gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .gallery figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease;
+  }
+  .gallery figure:hover { transform: translateY(-3px); }
+  .gallery img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 12px 34px rgba(120, 50, 80, 0.1);
+  }
+  .gallery figcaption,
+  .solo figcaption {
+    margin-top: 10px;
+    color: var(--plum);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+  }
+  .gallery.wide figure:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .gallery.quad { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gallery.big img { aspect-ratio: 3 / 2; }
+  .thumbs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .thumbs figure { overflow: hidden; margin: 0; border: 1px solid var(--line); border-radius: 10px; background: #fff; box-shadow: 0 8px 20px rgba(107, 74, 90, 0.1); }
+  .thumbs img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; transition: transform 0.5s ease; }
+  .thumbs figure:hover img { transform: scale(1.06); }
+  .solo { max-width: 600px; }
+  .solo figure { margin: 0; display: flex; flex-direction: column; transition: transform 0.25s ease; }
+  .solo figure:hover { transform: translateY(-3px); }
+  .solo img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; background: #fff; box-shadow: 0 12px 34px rgba(120, 50, 80, 0.1); }
+  .group-head { margin: 40px 0 18px; }
+  .group-head:first-of-type { margin-top: 0; }
+  .group-head h3 { margin-bottom: 6px; font-family: 'Nunito', "Segoe UI", Arial, sans-serif; font-size: 20px; color: var(--plum); }
+  .group-head p { margin: 0; color: var(--muted); max-width: 640px; }
+
+  .card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .card { overflow: hidden; margin: 0; border: 1px solid var(--line); border-radius: 12px; background: #fffafa; box-shadow: var(--shadow); }
+  .card img { aspect-ratio: 3 / 2; object-fit: contain; background: #fff7f8; }
+  .card figcaption { padding: 16px 18px 20px; font-size: 14px; font-weight: 500; color: #4a3540; }
+  .card figcaption strong { display: block; margin-bottom: 4px; color: var(--plum); font-size: 16px; font-weight: 700; }
+
+  .timeline-band {
+    color: var(--ink);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(circle at 82% 12%, rgba(232, 144, 203, 0.2), transparent 52%),
+      linear-gradient(160deg, #fdeef6 0%, #fbeaf4 100%);
+  }
+  .timeline-band .label { color: var(--rose-deep); }
+  .timeline-band h2, .timeline-band h3 { color: var(--plum); }
+  .timeline-band .lead { color: var(--muted); }
+  .timeline { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .milestone { min-height: 220px; padding: 24px; border: 1px solid var(--line); border-radius: 12px; background: #fffafa; box-shadow: 0 10px 26px rgba(107, 74, 90, 0.08); }
+  .milestone time { display: block; margin-bottom: 14px; font-size: 12px; font-weight: 700; color: var(--rose-deep); text-transform: uppercase; letter-spacing: 0.03em; }
+  .milestone p { margin-bottom: 0; color: var(--muted); }
+
+  .diagram { margin-top: 34px; border: 1px solid var(--dark-line); border-radius: 12px; overflow: hidden; background: #fff; }
+
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 18px;
+    border: 1px solid var(--rose-deep);
+    border-radius: 999px;
+    background: var(--rose-deep);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+  .button.secondary { background: transparent; color: var(--rose-deep); }
+  .button:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(193, 78, 125, 0.3); }
+  .button.secondary:hover { background: var(--rose-deep); color: #fff; }
+
+  footer { border-top: 1px solid var(--line); background: var(--cream); }
+  .footer-inner {
+    width: min(960px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 28px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 14px; }
+  .footer-links a { color: var(--rose-deep); text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer-links a:hover { border-color: currentColor; }
+
+  section[id], header[id] { scroll-margin-top: 86px; }
+
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 30;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--rose), var(--rose-deep));
+    box-shadow: 0 1px 6px rgba(193, 78, 125, 0.4);
+    transition: width 0.1s linear;
+  }
+
+  a:focus-visible, .button:focus-visible { outline: 2px solid var(--rose-deep); outline-offset: 3px; border-radius: 3px; }
+  ::selection { background: var(--rose); color: #fff; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    html.js .reveal.is-visible { opacity: 1; transform: none; }
+  }
+
+  @media (max-width: 980px) {
+    .site-nav { align-items: flex-start; flex-direction: column; gap: 10px; padding: 14px 20px; }
+    h1 { font-size: 42px; }
+    .section-head, .text-grid, .two-col { grid-template-columns: 1fr; }
+    .info-band, .fact-grid, .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .process, .gallery, .card-grid { grid-template-columns: 1fr; }
+    .thumbs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .gallery.wide figure:nth-child(1) { grid-column: span 1; grid-row: auto; }
+  }
+
+  @media (max-width: 640px) {
+    .nav-links { gap: 9px; font-size: 11px; }
+    .hero { min-height: 80vh; }
+    .hero-inner { width: min(100% - 32px, 1120px); padding: 74px 0 84px; }
+    h1 { font-size: 42px; }
+    h2 { font-size: 30px; }
+    .hero-copy, .lead, .quote { font-size: 19px; }
+    .section { width: min(100% - 32px, 1120px); padding: 60px 0; }
+    .info-band, .fact-grid, .timeline { grid-template-columns: 1fr; }
+    .info-item { min-height: auto; }
+  }
+</style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Project sections">
+    <a class="brand" href="#top">Ruxin Liang / Pink Car</a>
+    <div class="nav-links">
+      <a href="#story">Story</a>
+      <a href="#character">Character</a>
+      <a href="#process">Process</a>
+      <a href="#theme">Theme</a>
+      <a href="#film">Film</a>
+      <a href="#redesign">In 3D</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <p class="eyebrow">Hand-painted 2D short film &middot; 2022</p>
+      <h1>Pink Car</h1>
+      <p class="hero-copy">A one-minute hand-painted short about a young office worker, a pretty pink car parked outside her building, and the quiet way the things we own come to carry our lives.</p>
+      <div class="hero-meta" aria-label="Project summary">
+        <span class="pill">Written, designed, and animated by Ruxin Liang</span>
+        <span class="pill">Hand-painted 2D &middot; about one minute</span>
+        <span class="pill">Made solo, summer 2022</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section compact" aria-label="Project overview">
+      <div class="info-band">
+        <div class="info-item">
+          <strong>Form</strong>
+          <span>A hand-painted 2D animated short film, about one minute long, made solo over roughly three weeks.</span>
+        </div>
+        <div class="info-item">
+          <strong>Character</strong>
+          <span>Olis, an ordinary office worker who passes the same pink car on the street below her building.</span>
+        </div>
+        <div class="info-item">
+          <strong>Theme</strong>
+          <span>Life and death, new and old, how a person's belongings quietly hold the state of their life.</span>
+        </div>
+        <div class="info-item">
+          <strong>Tools</strong>
+          <span>Drawn in Procreate; edited, composited, and color-graded in After Effects and Photoshop.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="story">
+      <div class="section-head">
+        <p class="label">Story</p>
+        <div>
+          <h2>A girl, a pink car, and the life she reads in it.</h2>
+          <p class="lead">The film watches one object, a parked car, and lets its condition tell the story of an owner we never meet.</p>
+        </div>
+      </div>
+
+      <div class="text-grid">
+        <div class="copy">
+          <p>Olis is an ordinary office worker. On the street below her building sits a pretty pink car, and every so often its little ornaments and decorations change. She never sees the owner, so she reads the car instead, looking forward to each small change and imagining what kind of person would keep it this way.</p>
+          <p>Part of her starts to hope that one day a car like this might be hers, something small and cared for that quietly says who she is.</p>
+          <p>Then the changes stop. Dust gathers on the paint and the car sits untouched in the same parking spot, day after day. Eventually a tow company arrives to take it away, and the crew tells her that the owner has passed away.</p>
+          <p>Nothing is spelled out. The whole story lives in how the car looks from one day to the next, and in that last thing she learns about a stranger she never met.</p>
+        </div>
+        <figure>
+          <div class="feature-image">
+            <img src="PinkCar_project_assets/images/01.gif" alt="Opening shot: a pink building, a plant, and a soft pink sky" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="caption">The film's opening: a quiet pink street, hand-painted frame by frame.</figcaption>
+        </figure>
+      </div>
+
+      <div class="fact-grid" aria-label="Story structure">
+        <div class="fact">
+          <strong>The normal</strong>
+          <span>An office worker passes a pink car parked below her building every day.</span>
+        </div>
+        <div class="fact">
+          <strong>The curiosity</strong>
+          <span>Its ornaments keep changing. She imagines the owner she never meets, and hopes for a car of her own like it.</span>
+        </div>
+        <div class="fact">
+          <strong>The turning point</strong>
+          <span>The changes stop. Dust gathers and the car sits untouched in the same spot.</span>
+        </div>
+        <div class="fact">
+          <strong>The resolution</strong>
+          <span>A tow crew takes the car away, and tells her the owner has passed away.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="character">
+      <div class="section-head">
+        <p class="label">Character</p>
+        <div>
+          <h2>Olis, the film's only character.</h2>
+          <p class="lead">A young office worker, drawn small and round: dark ponytail, yellow top, loose blue trousers, and a shoulder bag she carries home each night. She has no dialogue. Her whole role is to watch the pink car below her building, imagine the owner she never meets, and quietly hope that one day a car like it might be hers.</p>
+        </div>
+      </div>
+      <div class="two-col">
+        <figure class="card">
+          <img src="PinkCar_project_assets/images/8.png" alt="Concept sketches of the character Olis in several poses" loading="lazy" decoding="async">
+          <figcaption><strong>Concept</strong>Early 2D sketches: proportion, costume, and silhouette.</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="PinkCar_project_assets/images/Generated-image-1.png" alt="Olis rebuilt as a soft-felt 3D figure" loading="lazy" decoding="async">
+          <figcaption><strong>In 3D</strong>Olis remodeled as a soft-felt figure (2026).</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="tint-band" id="process">
+      <div class="section">
+        <div class="section-head">
+          <p class="label">Process</p>
+          <div>
+            <h2>Storyboarded, drawn, and finished by one person.</h2>
+            <p class="lead">The whole short was made solo in about three weeks: roughly one week of design and storyboarding, then the animation and edit.</p>
+          </div>
+        </div>
+
+        <div class="gallery quad" aria-label="Story beats">
+          <figure>
+            <img src="PinkCar_project_assets/images/10.gif" alt="The pink city street" loading="lazy" decoding="async">
+            <figcaption>Establishing the block.</figcaption>
+          </figure>
+          <figure>
+            <img src="PinkCar_project_assets/images/04.gif" alt="Olis passing a pink door" loading="lazy" decoding="async">
+            <figcaption>Passing the pink door.</figcaption>
+          </figure>
+          <figure>
+            <img src="PinkCar_project_assets/images/06.gif" alt="Olis taking a closer look at the car" loading="lazy" decoding="async">
+            <figcaption>A closer look.</figcaption>
+          </figure>
+          <figure>
+            <img src="PinkCar_project_assets/images/09.gif" alt="The story across three beats" loading="lazy" decoding="async">
+            <figcaption>The story, beat by beat.</figcaption>
+          </figure>
+        </div>
+
+        <div class="process">
+          <article class="stage">
+            <div class="stage-num">Design</div>
+            <h3>Sketches and character</h3>
+            <p>Inspiration studies, the Olis character design, and other preliminary art, all drawn in Procreate.</p>
+          </article>
+          <article class="stage">
+            <div class="stage-num">Storyboard</div>
+            <h3>Blocking the arc</h3>
+            <p>A full storyboard laying out the short's beats, from the first curious look to the tow at the end.</p>
+          </article>
+          <article class="stage">
+            <div class="stage-num">Animation &amp; edit</div>
+            <h3>Draw, composite, grade</h3>
+            <p>Characters and objects animated frame by frame in Procreate, then edited, transitioned, and color-graded in After Effects.</p>
+          </article>
+        </div>
+
+        <ul class="stat-list" aria-label="Production details">
+          <li><strong>Software</strong>, Procreate, After Effects, Photoshop</li>
+          <li><strong>Hardware</strong>, iPad Pro + Apple Pencil, Wacom Intuos 4</li>
+          <li><strong>Time</strong>, about 45 hours across ~3 weeks</li>
+          <li><strong>Length</strong>, finished film about one minute</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="quote-band" id="theme" aria-label="Theme">
+      <div class="section">
+        <blockquote class="quote">
+          Life and death, new and old. A person's life can shape everything they own, and its ending can quietly reach a stranger who only ever watched from a distance. What we keep around us slowly takes on the state of our own lives.
+          <cite>Ruxin Liang, director's note, Pink Car (2022)</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="section" id="film">
+      <div class="section-head">
+        <p class="label">The Film</p>
+        <div>
+          <h2>Painted frames, all in one pink world.</h2>
+          <p class="lead">Every shot is hand-painted in a single soft-pink palette, so the whole film reads as one continuous place and mood.</p>
+        </div>
+      </div>
+
+      <div class="gallery quad" aria-label="Film frames">
+        <figure>
+          <img src="PinkCar_project_assets/images/01.gif" alt="Animated frame: pink building, plant, and sky" loading="lazy" decoding="async">
+          <figcaption>The opening street, in motion.</figcaption>
+        </figure>
+        <figure>
+          <img src="PinkCar_project_assets/images/02.gif" alt="Animated frame: Olis looking out of her window" loading="lazy" decoding="async">
+          <figcaption>Olis at her window, watching the block below.</figcaption>
+        </figure>
+        <figure>
+          <img src="PinkCar_project_assets/images/03.gif" alt="Animated frame: Olis walking into the pink city" loading="lazy" decoding="async">
+          <figcaption>The walk home through the pink city.</figcaption>
+        </figure>
+        <figure>
+          <img src="PinkCar_project_assets/images/08.gif" alt="Animated frame: Olis and the pink car" loading="lazy" decoding="async">
+          <figcaption>The pink car she watches every day.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="tint-band" id="redesign">
+      <div class="section">
+        <div class="section-head">
+          <p class="label">Revisited in 2026</p>
+          <div>
+            <h2>The same world, rebuilt in 3D.</h2>
+            <p class="lead">In 2026 the film was reimagined as a soft-felt 3D redesign: Olis and the pink car rebuilt as matte, tactile models in a pink city, alongside new 2D character sheets.</p>
+            <p class="lead" style="font-size: 15px; color: var(--muted);">These 2026 redesign images are AI-assisted concept renders, created under the artist's art direction. The 2022 film, its story, and its design are Ruxin Liang's original hand-drawn work.</p>
+          </div>
+        </div>
+
+        <div class="group-head">
+          <h3>The pink world, remodeled</h3>
+          <p>Establishing shots and interiors rebuilt as tactile 3D sets in the film's palette, the environment and lighting work.</p>
+        </div>
+        <div class="gallery big quad" aria-label="2026 environment renders">
+          <figure>
+            <img src="PinkCar_project_assets/images/pinkcar_building_sky_3d.png" alt="3D render: pink building and sky" loading="lazy" decoding="async">
+            <figcaption>Building and sky, the film's opening shot, in 3D.</figcaption>
+          </figure>
+          <figure>
+            <img src="PinkCar_project_assets/images/pinkcar_city_buildings_3d.png" alt="3D render: pink city buildings" loading="lazy" decoding="async">
+            <figcaption>The pink city street.</figcaption>
+          </figure>
+          <figure>
+            <img src="PinkCar_project_assets/images/pinkcar_window_3d.png" alt="3D render: Olis at a pink window" loading="lazy" decoding="async">
+            <figcaption>At the window, in soft-felt 3D.</figcaption>
+          </figure>
+          <figure>
+            <img src="PinkCar_project_assets/images/pinkcar_room_monitor_3d.png" alt="3D render: Olis facing a monitor in a pink room" loading="lazy" decoding="async">
+            <figcaption>Facing the screen, in soft-felt 3D.</figcaption>
+          </figure>
+        </div>
+
+        <div class="group-head">
+          <h3>Olis and the pink car</h3>
+          <p>The character and vehicle rebuilt as soft-felt models.</p>
+        </div>
+        <div class="solo" aria-label="2026 key visual">
+          <figure>
+            <img src="PinkCar_project_assets/images/pinkcar_key_visual_car_hero.png" alt="3D render: Olis beside the pink car with a heart emblem" loading="lazy" decoding="async">
+            <figcaption>The key visual, Olis and the pink car.</figcaption>
+          </figure>
+        </div>
+
+        <div class="group-head">
+          <h3>New 2D character sheets</h3>
+          <p>A fresh turnaround, pose set, and expression range drawn for Olis.</p>
+        </div>
+        <div class="card-grid" aria-label="2026 character sheets">
+          <figure class="card">
+            <img src="PinkCar_project_assets/images/pinkcar_olis_2d_design_variations.png" alt="Olis turnaround sheet" loading="lazy" decoding="async">
+            <figcaption><strong>Turnaround</strong>Updated 2D design pass for Olis.</figcaption>
+          </figure>
+          <figure class="card">
+            <img src="PinkCar_project_assets/images/pinkcar_olis_2d_pose_sheet.png" alt="Olis pose sheet" loading="lazy" decoding="async">
+            <figcaption><strong>Pose sheet</strong>Everyday poses and movement.</figcaption>
+          </figure>
+          <figure class="card">
+            <img src="PinkCar_project_assets/images/pinkcar_olis_2d_expression_sheet.png" alt="Olis expression sheet" loading="lazy" decoding="async">
+            <figcaption><strong>Expressions</strong>A range of small, quiet reactions.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="timeline-band" id="timeline">
+      <div class="section">
+        <div class="section-head">
+          <p class="label">Development</p>
+          <div>
+            <h2>From a finished 2D prototype to a 3D short in progress.</h2>
+            <p class="lead">Pink Car began as a complete 2D prototype and is now being rebuilt in 3D, aiming for festivals by 2027.</p>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <article class="milestone">
+            <time>2022</time>
+            <h3>2D prototype</h3>
+            <p>Original 2D prototype completed: story, character design, visual design, storyboard, animation, and a public concept page.</p>
+          </article>
+          <article class="milestone">
+            <time>2025&ndash;2026</time>
+            <h3>3D re-imagining</h3>
+            <p>The 3D redesign begins: surface-aging research, lighting and grooming references, and translation tests from the locked prototype.</p>
+          </article>
+          <article class="milestone">
+            <time>Next stage</time>
+            <h3>Build &amp; previs</h3>
+            <p>Finalize the car and protagonist models, a look bible, a procedural aging setup, and a locked 3D previs sequence.</p>
+          </article>
+          <article class="milestone">
+            <time>2027 &middot; planned</time>
+            <h3>Finish &amp; festivals</h3>
+            <p>Complete 3D production, compositing, sound, color, and a festival cut, then a submission package for international animation and short-film festivals.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Contact">
+      <div class="section-head">
+        <p class="label">Contact</p>
+        <div>
+          <h2>See more, or get in touch.</h2>
+          <p class="lead">Pink Car is a personal short film by Ruxin Liang. More work is on Behance.</p>
+          <div class="actions">
+            <a class="button" href="mailto:ruxinliang@gmail.com">Contact Ruxin</a>
+            <a class="button secondary" href="https://www.behance.net/ruxin-liang" target="_blank" rel="noopener">View Behance</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="footer-inner">
+      <div>Pink Car, original short film by Ruxin Liang. &copy; 2022&ndash;2026 Ruxin Liang. Story, design, and the 2022 hand-drawn animation are the author's original work; the 2026 3D redesign images are AI-assisted, created under the author's art direction.</div>
+      <div class="footer-links">
+        <a href="mailto:ruxinliang@gmail.com">ruxinliang@gmail.com</a>
+        <a href="https://www.behance.net/ruxin-liang" target="_blank" rel="noopener">Behance</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    var docEl = document.documentElement;
+    docEl.classList.add('js');
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var bar = document.createElement('div');
+    bar.className = 'scroll-progress';
+    document.body.appendChild(bar);
+
+    var nav = document.querySelector('.site-nav');
+    var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+    var sections = navLinks
+      .map(function (a) {
+        var href = a.getAttribute('href');
+        return href && href.charAt(0) === '#' ? document.querySelector(href) : null;
+      })
+      .filter(Boolean);
+
+    function onScroll() {
+      var st = window.pageYOffset || docEl.scrollTop;
+      var h = docEl.scrollHeight - docEl.clientHeight;
+      bar.style.width = (h > 0 ? (st / h) * 100 : 0) + '%';
+      if (nav) nav.classList.toggle('scrolled', st > 8);
+      var current = null;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].getBoundingClientRect().top <= 120) current = sections[i];
+      }
+      navLinks.forEach(function (a) {
+        a.classList.toggle('active', !!current && a.getAttribute('href') === '#' + current.id);
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+
+    if (!reduceMotion) {
+      var targets = document.querySelectorAll(
+        '.section-head, .info-item, .text-grid > *, .fact, .two-col > *, .stage, ' +
+        '.quote, .gallery figure, .card, .milestone, .diagram, .stat-list'
+      );
+      Array.prototype.forEach.call(targets, function (el) {
+        el.classList.add('reveal');
+        var siblings = el.parentNode ? el.parentNode.children : [];
+        var idx = Array.prototype.indexOf.call(siblings, el);
+        if (idx > 0) el.style.transitionDelay = Math.min(idx * 0.06, 0.3) + 's';
+      });
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+        Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+      } else {
+        Array.prototype.forEach.call(targets, function (el) { el.classList.add('is-visible'); });
+      }
+    }
+  })();
+  </script>
+</body>
+</html>

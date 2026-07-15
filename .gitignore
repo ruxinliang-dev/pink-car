@@ -1,0 +1,25 @@
+# Track only the images the site actually uses.
+# Source files and unused/large assets (SAV stills, liangr gifs, deck pages, etc.)
+# stay on disk locally but are kept out of the repo.
+PinkCar_project_assets/images/*
+!PinkCar_project_assets/images/01.gif
+!PinkCar_project_assets/images/02.gif
+!PinkCar_project_assets/images/03.gif
+!PinkCar_project_assets/images/04.gif
+!PinkCar_project_assets/images/06.gif
+!PinkCar_project_assets/images/08.gif
+!PinkCar_project_assets/images/09.gif
+!PinkCar_project_assets/images/10.gif
+!PinkCar_project_assets/images/8.png
+!PinkCar_project_assets/images/Generated-image-1.png
+!PinkCar_project_assets/images/pinkcar_building_sky_3d.png
+!PinkCar_project_assets/images/pinkcar_city_buildings_3d.png
+!PinkCar_project_assets/images/pinkcar_key_visual_car_hero.png
+!PinkCar_project_assets/images/pinkcar_olis_2d_design_variations.png
+!PinkCar_project_assets/images/pinkcar_olis_2d_expression_sheet.png
+!PinkCar_project_assets/images/pinkcar_olis_2d_pose_sheet.png
+!PinkCar_project_assets/images/pinkcar_room_monitor_3d.png
+!PinkCar_project_assets/images/pinkcar_window_3d.png
+
+.DS_Store
+Thumbs.db
